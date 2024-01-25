@@ -1,16 +1,17 @@
 <template>
-    <div class="bg-black p-4">
-        <h1 class="text-white">Hello, Tailwind CSS!</h1>
+    <div class="bg-blue-500 p-4">
+        <router-link class="p-2" to="/">Home</router-link>
+        <router-link class="p-2" to="/about">About</router-link>
     </div>
+
+    <router-view></router-view>
 </template>
 
 <script>
-import Navigation from './Components/Navigation.vue';
 
 export default {
     name: 'App',
     components: {
-        Navigation
     }
 }
 </script>

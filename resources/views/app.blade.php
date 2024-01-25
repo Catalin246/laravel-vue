@@ -8,7 +8,7 @@
     @vite('resources/css/app.css')
 </head>
 
-<body class="bg-black">
+<body class="">
     <div id="app"></div>
     @vite('resources/js/app.js')
 </body>
