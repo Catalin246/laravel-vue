@@ -1,5 +1,5 @@
 <template>
-    <div class="bg-blue-500 p-4">
+    <div class="bg-black p-4">
         <h1 class="text-white">Hello, Tailwind CSS!</h1>
     </div>
 </template>
