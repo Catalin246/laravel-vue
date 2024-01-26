@@ -1,28 +1,33 @@
 <template>
-    <div class="navigation-bar grid grid-cols-3 gap-4 items-center p-4 bg-blue-400">
+    <div class="container mx-auto">
+      <div class="navigation-bar grid grid-cols-3 gap-4 items-center py-10 bg-black">
         <div class="text-white logo">
-            Logo
+          <img src="../assets/logo.png" alt="Logo">
         </div>
 
         <ul class="text-white navigation-list flex gap-4">
-            <li v-for="(page, index) in pages" :key="index">{{ page }}</li>
+          <li v-for="(page, index) in pages" :key="index" class="text-base cursor-pointer">{{ page }}</li>
         </ul>
 
         <div class="text-white icons flex justify-end gap-4">
-            <i class="fas fa-search  w-5 h-5 cursor-pointer text-white" @click="handleSearch"></i>
+          <i class="icon text-lg fas fa-search cursor-pointer text-white" @click="handleSearch"></i>
 
-            <i class="fas fa-user  w-5 h-5 cursor-pointer text-white" @click="handleProfile"></i>
+          <i class="icon text-lg fas fa-user cursor-pointer text-white" @click="handleProfile"></i>
 
-            <i class="fas fa-shopping-basket  w-5 h-5 cursor-pointer text-white" @click="handleBasket"></i>
+          <i class="icon text-lg fas fa-shopping-basket cursor-pointer text-white" @click="handleBasket"></i>
         </div>
+      </div>
     </div>
+
 </template>
 
 <script>
+import '@fortawesome/fontawesome-free/css/all.css';
+
 export default {
     data() {
         return {
-            pages: ["Home", "Menu", "Shop", "About","Contact"],
+            pages: ["Home", "Menu", "Shop", "About", "Contact"],
         };
     },
     methods: {
@@ -32,31 +37,11 @@ export default {
 </script>
 
 <style scoped>
-
-.icon {
-    font-size: 16px;
-}
-/* Add your styling for the navigation bar here */
-/* .navigation-bar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-    background-color: #f0f0f0;
+.icon:hover {
+    color: #FF9F0D;
 }
 
-.logo img {
-    max-height: 50px;
+ul li:hover {
+    color: #FF9F0D;
 }
-
-.navigation-list {
-    list-style: none;
-    display: flex;
-    gap: 20px;
-}
-
-.icons i {
-    margin-left: 10px;
-    cursor: pointer;
-} */
 </style>

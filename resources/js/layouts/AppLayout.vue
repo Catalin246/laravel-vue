@@ -2,7 +2,8 @@
     <div id="navigation">
         <Navigation />
     </div>
-    <div>
+
+    <div class="container mx-auto text-white">
         This is the App Layout
     </div>
 </template>
