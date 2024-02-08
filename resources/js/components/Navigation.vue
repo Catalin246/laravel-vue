@@ -1,7 +1,7 @@
 <template>
     <div class="container mx-auto">
       <div class="navigation-bar grid grid-cols-3 gap-4 items-center py-10 bg-black">
-        <div class="text-white logo">
+        <div class="text-white logo px-5">
           <img src="../assets/logo.png" alt="Logo">
         </div>
 
@@ -9,7 +9,7 @@
           <li v-for="(page, index) in pages" :key="index" class="text-base cursor-pointer">{{ page }}</li>
         </ul>
 
-        <div class="text-white icons flex justify-end gap-4">
+        <div class="text-white icons flex justify-end gap-4 px-4">
           <i class="icon text-lg fas fa-search cursor-pointer text-white" @click="handleSearch"></i>
 
           <i class="icon text-lg fas fa-user cursor-pointer text-white" @click="handleProfile"></i>
