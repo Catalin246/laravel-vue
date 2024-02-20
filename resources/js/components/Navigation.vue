@@ -5,9 +5,11 @@
           <img src="../assets/logo.png" alt="Logo">
         </div>
 
-        <ul class="text-white navigation-list flex gap-4">
-          <li v-for="(page, index) in pages" :key="index" class="text-base cursor-pointer">{{ page }}</li>
-        </ul>
+        <div class="flex justify-center">
+           <ul class="text-white navigation-list flex gap-4">
+            <li v-for="(page, index) in pages" :key="index" class="text-base cursor-pointer">{{ page }}</li>
+          </ul>
+        </div>
 
         <div class="text-white icons flex justify-end gap-4 px-4">
           <i class="icon text-lg fas fa-search cursor-pointer text-white" @click="handleSearch"></i>
