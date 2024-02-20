@@ -16,9 +16,3 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('app');
 });
-
-Route::get('auth/login', function () {
-    return "This is the Login route.";
-});
-Route::get('auth/logout', 'Auth\AuthController@getLogout');
-Route::get('auth/register', 'Auth\AuthController@getRegister');
