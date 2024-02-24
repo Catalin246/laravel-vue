@@ -1,6 +1,8 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Foodtuck!"/>
+  <div class="bg-black">
+    <img alt="Vue logo" src="./assets/logo.png">
+    <HelloWorld msg="Welcome to Foodtuck!"/>
+  </div>
 </template>
 
 <script>
