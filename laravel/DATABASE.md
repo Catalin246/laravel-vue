@@ -1,6 +1,6 @@
 # user/customer:
 
-id, name, name, email, password
+id, name, email, password
 
 # empployee:
 
