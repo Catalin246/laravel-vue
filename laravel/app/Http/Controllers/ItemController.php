@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\ItemResource;
+use App\Models\ItemImage;
 use Illuminate\Http\Request;
 use App\Models\Item;
 use Illuminate\Http\Response;// Assuming you have an Item model
@@ -26,7 +27,19 @@ class ItemController extends Controller
     {
         // Create a new item
         $item = Item::create($request->all());
-        return response()->json($item, 201);
+
+        // Create item images associated with the item
+        if ($request->has('image_urls')) {
+            $imageUrls = $request->input('image_urls');
+            foreach ($imageUrls as $imageUrl) {
+                $itemImage = new ItemImage();
+                $itemImage->item_id = $item->id;
+                $itemImage->image_url = $imageUrl['image_url'];
+                $itemImage->save();
+            }
+        }
+
+        return response()->json(new ItemResource($item), Response::HTTP_CREATED);
     }
 
     /**
@@ -47,10 +60,19 @@ class ItemController extends Controller
         // Find the item
         $item = Item::findOrFail($id);
 
-        // Update the item
-        $item->update($request->all());
+        // Update the item attributes
+        $item->update($request->except('image_urls'));
 
-        return response()->json($item, 200);
+        // Update item images based on the provided IDs
+        if ($request->has('image_urls')) {
+            foreach ($request->input('image_urls') as $image) {
+                $itemImage = ItemImage::findOrFail($image['id']);
+                $itemImage->image_url = $image['image_url'];
+                $itemImage->save();
+            }
+        }
+
+        return response()->json(new ItemResource($item), Response::HTTP_OK);
     }
 
     /**
@@ -61,6 +83,6 @@ class ItemController extends Controller
         // Find the item and delete it
         $item = Item::findOrFail($id);
         $item->delete();
-        return response()->json(null, 204);
+        return response()->json(null, Response::HTTP_NO_CONTENT);
     }
 }
