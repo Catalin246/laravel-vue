@@ -23,6 +23,8 @@ Route::prefix('auth')->group(function () {
     Route::post('logout', [AuthController::class, 'logout']);
 });
 
-Route::apiResource('employees', EmployeeController::class);
+Route::middleware('auth:api')->group(function () {
+    Route::apiResource('employees', EmployeeController::class);
+    Route::apiResource('items', ItemController::class);
+});
 
-Route::apiResource('items', ItemController::class);
