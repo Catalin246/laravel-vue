@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Item; // Assuming you have an Item model
 
 class ItemController extends Controller
 {
@@ -11,7 +12,9 @@ class ItemController extends Controller
      */
     public function index()
     {
-        //
+        // Retrieve all items
+        $items = Item::all();
+        return response()->json($items);
     }
 
     /**
@@ -19,7 +22,9 @@ class ItemController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Create a new item
+        $item = Item::create($request->all());
+        return response()->json($item, 201);
     }
 
     /**
@@ -27,7 +32,9 @@ class ItemController extends Controller
      */
     public function show(string $id)
     {
-        //
+        // Retrieve a single item
+        $item = Item::findOrFail($id);
+        return response()->json($item);
     }
 
     /**
@@ -35,7 +42,13 @@ class ItemController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        // Find the item
+        $item = Item::findOrFail($id);
+
+        // Update the item
+        $item->update($request->all());
+
+        return response()->json($item, 200);
     }
 
     /**
@@ -43,6 +56,9 @@ class ItemController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        // Find the item and delete it
+        $item = Item::findOrFail($id);
+        $item->delete();
+        return response()->json(null, 204);
     }
 }

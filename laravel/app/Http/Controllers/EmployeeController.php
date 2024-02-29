@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Employee; // Assuming you have an Employee model
 
 class EmployeeController extends Controller
 {
@@ -11,7 +12,9 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        //
+        // Retrieve all employees
+        $employees = Employee::all();
+        return response()->json($employees);
     }
 
     /**
@@ -19,7 +22,9 @@ class EmployeeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Create a new employee
+        $employee = Employee::create($request->all());
+        return response()->json($employee, 201);
     }
 
     /**
@@ -27,7 +32,9 @@ class EmployeeController extends Controller
      */
     public function show(string $id)
     {
-        //
+        // Retrieve a single employee
+        $employee = Employee::findOrFail($id);
+        return response()->json($employee);
     }
 
     /**
@@ -35,7 +42,13 @@ class EmployeeController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        // Find the employee
+        $employee = Employee::findOrFail($id);
+
+        // Update the employee
+        $employee->update($request->all());
+
+        return response()->json($employee, 200);
     }
 
     /**
@@ -43,6 +56,9 @@ class EmployeeController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        // Find the employee and delete it
+        $employee = Employee::findOrFail($id);
+        $employee->delete();
+        return response()->json(null, 204);
     }
 }
