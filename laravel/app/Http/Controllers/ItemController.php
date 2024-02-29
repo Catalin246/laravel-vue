@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\ItemResource;
 use Illuminate\Http\Request;
-use App\Models\Item; // Assuming you have an Item model
+use App\Models\Item;
+use Illuminate\Http\Response;// Assuming you have an Item model
 
 class ItemController extends Controller
 {
@@ -13,8 +15,8 @@ class ItemController extends Controller
     public function index()
     {
         // Retrieve all items
-        $items = Item::all();
-        return response()->json($items);
+        $items = ItemResource::collection(Item::all());
+        return response()->json($items, Response::HTTP_OK);
     }
 
     /**
@@ -34,7 +36,7 @@ class ItemController extends Controller
     {
         // Retrieve a single item
         $item = Item::findOrFail($id);
-        return response()->json($item);
+        return response()->json(new ItemResource($item), Response::HTTP_OK);
     }
 
     /**

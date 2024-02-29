@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\EmployeeResource;
 use Illuminate\Http\Request;
-use App\Models\Employee; // Assuming you have an Employee model
+use App\Models\Employee;
+use Illuminate\Http\Response;// Assuming you have an Employee model
 
 class EmployeeController extends Controller
 {
@@ -13,8 +15,8 @@ class EmployeeController extends Controller
     public function index()
     {
         // Retrieve all employees
-        $employees = Employee::all();
-        return response()->json($employees);
+        $employees = EmployeeResource::collection(Employee::all());
+        return response()->json($employees, Response::HTTP_OK);
     }
 
     /**
@@ -34,7 +36,7 @@ class EmployeeController extends Controller
     {
         // Retrieve a single employee
         $employee = Employee::findOrFail($id);
-        return response()->json($employee);
+        return response()->json(new EmployeeResource($employee), Response::HTTP_OK);
     }
 
     /**
