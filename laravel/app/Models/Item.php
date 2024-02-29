@@ -20,6 +20,22 @@ class Item extends Model
         'tag',
         'name',
         'description',
-        'category',
+        'category_id',
     ];
+
+    /**
+     * Get the category associeted with the Item.
+     */
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
+
+    /**
+     * Get all images of an item.
+     */
+    public function images()
+    {
+        return $this->hasMany(ItemImage::class);
+    }
 }

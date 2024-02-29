@@ -17,7 +17,8 @@ return new class extends Migration {
             $table->string('tag');
             $table->string('name');
             $table->string('description')->nullable();
-            $table->string('category');
+            $table->unsignedBigInteger('category_id');
+            $table->foreign('category_id')->references('id')->on('categories');
             $table->timestamps();
         });
     }

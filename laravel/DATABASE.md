@@ -10,14 +10,10 @@ id, name, role, image_url
 
 id, price, discount (0 - 99), tag (Our shop), name, description, category
 
+# category:
+
+id, name
+
 # item_images
 
 id, item_id, image_url
-
-# order
-
-id, user_id, discount, total
-
-# order_item
-
-id, item_id, quantity

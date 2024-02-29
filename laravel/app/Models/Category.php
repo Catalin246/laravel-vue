@@ -17,4 +17,12 @@ class Category extends Model
     protected $fillable = [
         'name'
     ];
+
+    /**
+     * Get the items of a category.
+     */
+    public function items()
+    {
+        return $this->hasMany(Item::class);
+    }
 }
